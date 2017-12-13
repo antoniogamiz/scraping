@@ -1,5 +1,5 @@
+#-*- coding: utf-8 -*-
 import scrapy
-
 
 class PostsSpider(scrapy.Spider):
     name = "postsosl"
