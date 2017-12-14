@@ -1,0 +1,75 @@
+## Módulo re (Regular Expressions)
+
+Función:
+`re.search(patron, cadena)`
+
+#### Comodines
+
+* Punto(.): reemplaza a un carácter cualquiera.
+	* Flag re.DOTALL.
+	* No coincide con "\n".
+	
+*  Principio de línea: "^patron"
+
+* $ Final de linea : "patron$"
+	* Flag re.MULTILINE
+	
+* Dígitos "\d" y "\D":
+	* "\d" sustituye a cualquier dígito.
+	* "\D" a cualquier cosa que no lo sea.
+
+* Espacios "\s" y "\S":
+	* "\s" identifica cualquier carácter que implique un espacio(espacio, 
+tabulador, retorno de carro).
+	* "\S" su opuesto.
+
+* Alfanumérico "\w" y "\W":
+	* "\w" identifica caracteres alfanuméricos: letras, números y "_".
+	* "\W" su opuesto.
+
+* Corchetes "[]": se usan para crear listas de caracteres.
+	* [abcd]
+	* Secuencias [0-9], [a-h], [a-zA-Z]
+	* "^" se puede usar dentro de [] para indicar el opuesto del conjunto.
+
+* Signo "+": hace que en el patron coincida el carácter que le precede una o más veces.
+	* "jo+" = "jo", "joo", "joo..." (Una o más apariciones.
+	* Usando "" (cero, una o más apariciones)
+	* "?" (cero o una apariciones)
+	
+* Llaves "{}": "{n}" indica que buscamos n repeticiones del carácter que le precede.
+	* "{m,n}" : m mínimo de repeticiones, n máximo de repeticiones.
+
+* Paréntesis "()": "ba(na)" = "bana", "banana", "bananana..."
+
+* Barra "|": se usa para separar opciones
+	* "hola (mundo|mundos)" = "hola mundo", "hola mundos".
+
+* Ejemplo de expresión regular que encuentra DNI's:
+`^\d{8}[-]?[a-zA-Z]$`
+
+https://www.addedbytes.com/blog/shiny-new-things-introducing-cheatography
+
+https://docs.python.org/2/library/re.html
+
+http://www.regular-expressions.info/reference.html
+
+
+### Funciones
+#### Función re.search
+`re.search(patron, cadena, [flags])`
+* Retorna un objeto `MatchObject`, que es el que contiene los datos de nuestra búsqueda. También devuelve `True` si encuentra alguna coincidencia, y `False` si no.
+#### Función re.match
+`re.match(patron, cadena, [flags])`
+* Se comporta igual que search, buscando el patron en la cadena pero sólo si coincide desde el inicio de cadena (más o menos equivalente a hacer un searh pero pero con el carácter "^".
+#### Función re.split
+`re.split(patron, cadena, [max], [flags])`
+* `[max]`: número máximo de trozos que queremos obtener.
+* Return: devuelve un array que contiene las cadenas resultantes de dividir `cadena` mediente `patron`.
+#### Función re.findall
+`re.findall(patron, cadena, [max], [flags])`
+* Funciona igual que `find` pero, en lugar de detenerse en la primera coincidencia, retorna un array con todas las coincidencias.
+#### Función re.sub
+`re.sub(patron, cadenas, [contador], [flags]`
+Usamos Patrón para buscar en Cadena y, las coincidencias que encontremos, las reemplazamos por Reemplazar. Si se usa un número en el argumento opcional "contador", sólo se reemplazará ese número de apariciones como máximo, aunque hubiera más coincidencias.
+Al igual que el anterior retorna un array con los resultados.
