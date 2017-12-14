@@ -9,12 +9,18 @@ import json
 
 class PostsPipeline(object):
     def open_spider(self, spider):
-        self.file = open('items.jl', 'w')
+        self.items = open('./JSON/items.jl', 'w')
+        self.items_without_content = open('./JSON/items_without_content.jl', 'w')
 
     def close_spider(self, spider):
-        self.file.close()
+        self.items.close()
+        self.items_without_content.close()
 
     def process_item(self, item, spider):
         line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
+        try:
+            if item['content']:
+                self.items.write(line)
+        except:        
+            self.items_without_content.write(line)
         return item

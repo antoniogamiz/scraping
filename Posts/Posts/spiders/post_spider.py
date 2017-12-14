@@ -18,15 +18,14 @@ class PostsSpider(scrapy.Spider):
         #     yield response.follow(next_page, self.parse)
 
     def parse_post(self, response):
-        # item=PostsItem()
+        
         loader = ItemLoader(PostsItem(), selector=response)
-        loader.add_xpath('content', '/html/body/div[1]/div[2]/div[2]/div/div[1]/article/section/p/text()')
+
+        loader.add_xpath('author', '/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/span/span/a/text()')
         loader.add_xpath('title', '/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/h1/text()')
-        # item["author"] = response.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/span/span/a/text()").extract()
-        # item["title"] = response.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/h1/text()").extract()
-        # item["categories"] = response.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/a/text()").extract()
-        # item["labels"] = response.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/a[@class='btn btn-mini']/text()").extract()
-        # item["content"] = response.xpath("/html/body/div[1]/div[2]/div[2]/div/div[1]/article/section/p").extract()
+        loader.add_xpath('categories', '/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/a/text()')
+        loader.add_xpath('labels', "/html/body/div[1]/div[2]/div[2]/div/div[1]/article/header/div/a[@class='btn btn-mini']/text()")
+        loader.add_xpath('content', '/html/body/div[1]/div[2]/div[2]/div/div[1]/article/section/p/text()')
 
         return loader.load_item()
 

@@ -32,9 +32,6 @@ class PostsItem(scrapy.Item):
         output_processor=TakeFirst(),
     )
     content = scrapy.Field(
-        input_processor=MapCompose(),
         output_processor=Join(),
-        # input_processor=MapCompose(lambda s: re.sub("",'',s)),
-        # output_processor=Join(),
     )
 
