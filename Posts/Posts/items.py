@@ -24,12 +24,10 @@ class PostsItem(scrapy.Item):
         output_processor=TakeFirst(),
     )
     categories = scrapy.Field(
-        input_processor=TakeFirst(),
-        output_processor=TakeFirst(),
+        output_processor=Join(),
     )
     labels = scrapy.Field(
-        input_processor=TakeFirst(),
-        output_processor=TakeFirst(),
+        output_processor=Join(),
     )
     content = scrapy.Field(
         output_processor=Join(),
