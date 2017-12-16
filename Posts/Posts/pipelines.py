@@ -9,8 +9,8 @@ import json
 
 class PostsPipeline(object):
     def open_spider(self, spider):
-        self.items = open('./JSON/items.jl', 'w')
-        self.items_without_content = open('./JSON/items_without_content.jl', 'w')
+        self.items = open('./Posts/JSON/items.jl', 'w')
+        self.items_without_content = open('./Posts/JSON/items_without_content.jl', 'w')
 
     def close_spider(self, spider):
         self.items.close()
