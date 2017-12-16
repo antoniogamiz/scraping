@@ -7,12 +7,7 @@
 
 import scrapy
 import re
-from scrapy.loader.processors import TakeFirst, MapCompose, Join, Compose
-from w3lib.html import remove_tags
-
-def clean_content(content):
-    # new_content=re.sub("\<p\>", '', str(content[0]))
-    return str(type(content))
+from scrapy.loader.processors import TakeFirst, Join
 
 class PostsItem(scrapy.Item):
     author = scrapy.Field(
